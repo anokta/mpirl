@@ -33,6 +33,7 @@ namespace GoogleARCore.Examples.Common
         /// A prefab for tracking and visualizing detected planes.
         /// </summary>
         public GameObject DetectedPlanePrefab;
+        public GameObject DetectedPlaneVisualPrefab;
 
         /// <summary>
         /// A list to hold new planes ARCore began tracking in the current frame. This object is used across
@@ -58,8 +59,11 @@ namespace GoogleARCore.Examples.Common
                 // Instantiate a plane visualization prefab and set it to track the new plane. The transform is set to
                 // the origin with an identity rotation since the mesh for our prefab is updated in Unity World
                 // coordinates.
+                GameObject planeVisualObject = Instantiate(DetectedPlaneVisualPrefab, Vector3.zero, Quaternion.identity, transform);
+                planeVisualObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
+
                 GameObject planeObject = Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
-                planeObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
+                planeObject.GetComponent<DetectedPlaneController>().Initialize(m_NewPlanes[i]);
             }
         }
     }
