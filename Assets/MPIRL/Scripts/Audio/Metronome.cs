@@ -19,8 +19,18 @@ public class Metronome : MonoBehaviour {
     sequencer.OnNextBeat -= OnNextBeat;
   }
 
+  private void Update() {
+    if (Input.GetKeyDown(KeyCode.Space)) {
+      if (sequencer.IsPlaying) {
+        sequencer.Stop();
+      } else {
+        sequencer.Play();
+      }
+    }
+  }
+
   private void OnNextBeat(int section, int bar, int beat, double dspTime) {
-    //source.Stop();
+    source.Stop();
     source.pitch = beat == 0 ? 2.0f : 1.0f;
     source.PlayScheduled(dspTime);
   }

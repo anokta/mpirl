@@ -28,15 +28,6 @@ public class Sequencer : MonoBehaviour {
   }
 
   void Update() {
-    //Debug.Log(CurrentSection + " / " + CurrentBar + " / " + CurrentBeat + " -- " + timeOffsetSeconds);
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      if (IsPlaying) {
-        Stop();
-      } else {
-        Play();
-      }
-    }
-
     if (!IsPlaying || numSecondsPerBeat <= 0.0f) {
       return;
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using GoogleARCore;
 
 public class PlaneController : MonoBehaviour {
+  public float idleAlpha = 0.5f;
   public float colliderHeight = 0.025f;
 
   private DetectedPlane detectedPlane;
@@ -22,6 +23,8 @@ public class PlaneController : MonoBehaviour {
   }
 
   public void Initialize(DetectedPlane plane) {
+    colliderRenderer.material.color = ColorGenerator.Generate(idleAlpha);
+
     detectedPlane = plane;
     anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
     transform.parent = anchor.transform;

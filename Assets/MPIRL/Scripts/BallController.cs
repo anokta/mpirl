@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
-  private AudioSource source;
+  public float timeout = 2.5f;
 
-  private float timeout = 2.5f;
+  private AudioSource source;
 
   private float initTime = 0.0f;
 
