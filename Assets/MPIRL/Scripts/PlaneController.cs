@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
 
-public class DetectedPlaneController : MonoBehaviour {
+public class PlaneController : MonoBehaviour {
   public float colliderHeight = 0.025f;
 
   private DetectedPlane detectedPlane;
