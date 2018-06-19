@@ -24,7 +24,7 @@ public class Metronome : MonoBehaviour {
       if (sequencer.IsPlaying) {
         sequencer.Stop();
       } else {
-        sequencer.Play();
+        sequencer.Play(AudioSettings.dspTime);
       }
     }
   }

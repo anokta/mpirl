@@ -44,9 +44,13 @@ public class BallController : MonoBehaviour {
     int index = noteOffset + Random.Range(0, 8);
     int octaveShift = Mathf.FloorToInt((float)index / 8.0f);
     int offset = (index + 32) % Scale.majorScale.Length;
-    source.Stop();
     source.pitch = Mathf.Pow(2.0f, octaveShift) * Scale.majorScale[offset];
-    source.Play();
+    source.PlayOneShot(source.clip);
+
+    // TEST // 
+    if (collision.transform.tag == "Plane") {
+      GetComponent<Renderer>().material.color = collision.transform.GetComponent<Renderer>().material.color;
+    }
   }
 
   void OnCollisionExit(Collision collision) {

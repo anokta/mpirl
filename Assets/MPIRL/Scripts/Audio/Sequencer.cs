@@ -25,6 +25,7 @@ public class Sequencer : MonoBehaviour {
 
   private void Awake() {
     lookaheadSeconds = 2.0 * (double)Time.fixedUnscaledDeltaTime;
+    OnValidate();
   }
 
   void Update() {
@@ -52,11 +53,11 @@ public class Sequencer : MonoBehaviour {
     CalculateNumSamplesPerBeat();
   }
 
-  public void Play() {
+  public void Play(double startDspTime) {
     currentBeat = 0;
     currentBar = 0;
     currentSection = 0;
-    targetDspTime = AudioSettings.dspTime;
+    targetDspTime = startDspTime;
     IsPlaying = true;
   }
 

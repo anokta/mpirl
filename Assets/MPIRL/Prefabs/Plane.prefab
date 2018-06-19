@@ -112,4 +112,4 @@ MonoBehaviour:
   colliderRenderer: {fileID: 23508989697192056}
   colliderHeight: 0.025
   scaleSpeed: 8
-  idleAlpha: 0.5
+  idleAlpha: 0.6

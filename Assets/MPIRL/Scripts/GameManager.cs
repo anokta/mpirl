@@ -20,15 +20,17 @@ public class GameManager : MonoBehaviour {
   private GameObject ballRoot;
   private GameObject planeRoot;
 
-  private void Awake() {
+  void Awake() {
     newPlanes = new List<DetectedPlane>();
 
     ballRoot = new GameObject("Balls");
     planeRoot = new GameObject("Planes");
+
+    Screen.sleepTimeout = SleepTimeout.NeverSleep;
   }
   
   void OnEnable() {
-    sequencer.Play();  
+    sequencer.Play(AudioSettings.dspTime + 4.0f);  
   }
   
   void OnDisable() {
