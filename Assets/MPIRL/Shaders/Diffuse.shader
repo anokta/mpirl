@@ -2,8 +2,7 @@
 {
     Properties
     {
-      _Color("Color",COLOR) = (0.5,0.5,0.5,1.0)        
-      _MainTex("Base (RGB)", 2D) = "white" {}
+      _Color("Color", COLOR) = (0.5,0.5,0.5,1.0)        
     }
 
     SubShader 
@@ -14,7 +13,6 @@
         CGPROGRAM
         #pragma surface surf Lambert noforwardadd finalcolor:lightEstimation
 
-        sampler2D _MainTex;
         fixed4 _Color;
         fixed3 _GlobalColorCorrection;
 
@@ -30,9 +28,8 @@
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb;
-            o.Alpha = c.a;
+          o.Albedo = _Color.rgb;
+          o.Alpha = _Color.a;
         }
         ENDCG
     }
