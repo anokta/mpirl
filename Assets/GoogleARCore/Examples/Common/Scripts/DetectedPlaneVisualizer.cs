@@ -50,7 +50,7 @@ namespace GoogleARCore.Examples.Common
             new Color(1.0f, 0.756f, 0.027f)
         };
 
-        public DetectedPlane m_DetectedPlane;
+        private DetectedPlane m_DetectedPlane;
 
         // Keep previous frame's mesh polygon to avoid mesh update every frame.
         private List<Vector3> m_PreviousFrameMeshVertices = new List<Vector3>();
