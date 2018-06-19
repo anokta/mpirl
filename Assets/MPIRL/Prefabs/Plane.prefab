@@ -108,4 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3596932111f30a44b9006d92629fa0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 65044201087412156}
+  colliderRenderer: {fileID: 23508989697192056}
   colliderHeight: 0.025
+  scaleSpeed: 8
+  idleAlpha: 0.5

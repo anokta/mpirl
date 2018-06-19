@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9442ee33cb2775a42a27dae07f676953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 82669043051208454}
+  timeout: 2.5
 --- !u!135 &135030294462510758
 SphereCollider:
   m_ObjectHideFlags: 1

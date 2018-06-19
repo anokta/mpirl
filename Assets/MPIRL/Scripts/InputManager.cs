@@ -12,9 +12,14 @@ public class InputManager : MonoBehaviour {
     //  return;
     //}
     //Touch touch = Input.GetTouch(0);
-    
+
     // TODO(anokta): This is temporary, replace via flick -> throw behaivor.
+
+#if UNITY_EDITOR
     if (Input.GetMouseButtonUp(0)) {
+#else
+    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+#endif  // UNITY_EDITOR
       Vector3 velocity = mainCamera.transform.forward;
       velocity.y += Random.Range(0.0f, 0.25f);
       gameManager.ThrowBall(3.0f * velocity);

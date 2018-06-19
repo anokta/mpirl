@@ -4,32 +4,18 @@ using UnityEngine;
 using GoogleARCore;
 
 public class PlaneController : MonoBehaviour {
+  public BoxCollider boxCollider;
+  public MeshRenderer colliderRenderer;
+
+  public float colliderHeight = 0.02f;
+  public float scaleSpeed = 8.0f;
   public float idleAlpha = 0.5f;
-  public float colliderHeight = 0.025f;
 
   private DetectedPlane detectedPlane;
-
-  private BoxCollider boxCollider;
-  private MeshRenderer colliderRenderer;
-
   private Anchor anchor;
 
-  private Vector3 targetScale;
-
   void Awake() {
-    colliderRenderer = GetComponentInChildren<MeshRenderer>();
-    boxCollider = GetComponent<BoxCollider>();
     transform.localScale = Vector3.zero;
-  }
-
-  public void Initialize(DetectedPlane plane) {
-    colliderRenderer.material.color = ColorGenerator.Generate(idleAlpha);
-
-    detectedPlane = plane;
-    anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
-    transform.parent = anchor.transform;
-    transform.localPosition = -0.25f * colliderHeight * Vector3.up;
-    transform.localRotation = Quaternion.identity;
   }
 
   void Update() {
@@ -51,7 +37,17 @@ public class PlaneController : MonoBehaviour {
     boxCollider.enabled = true;
     colliderRenderer.enabled = true;
 
-    targetScale = 0.5f *  new Vector3(detectedPlane.ExtentX, colliderHeight, detectedPlane.ExtentZ);
-    transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 8.0f);
+    var targetScale = new Vector3(0.5f * detectedPlane.ExtentX, colliderHeight, 0.5f * detectedPlane.ExtentZ);
+    transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
 	}
+
+  public void Initialize(DetectedPlane plane) {
+    colliderRenderer.material.color = ColorGenerator.Generate(idleAlpha);
+
+    detectedPlane = plane;
+    anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
+    transform.parent = anchor.transform;
+    transform.localPosition = -0.5f * colliderHeight * Vector3.up;
+    transform.localRotation = Quaternion.identity;
+  }
 }

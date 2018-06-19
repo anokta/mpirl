@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 
   public GameObject planePrefab;
 
+  public Sequencer sequencer;
+
   private List<DetectedPlane> newPlanes;
 
   private GameObject ballRoot;
@@ -25,7 +27,15 @@ public class GameManager : MonoBehaviour {
     planeRoot = new GameObject("Planes");
   }
   
-	void Update() {
+  void OnEnable() {
+    sequencer.Play();  
+  }
+  
+  void OnDisable() {
+    sequencer.Stop();  
+  }
+
+  void Update() {
     // Exit the app when the 'back' button is pressed.
     if (Input.GetKey(KeyCode.Escape)) {
       Application.Quit();

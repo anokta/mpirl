@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
-  public float timeout = 2.5f;
-
-  private AudioSource source;
+  public AudioSource source;
+  
+  public float destroyTimeout = 2.5f;
 
   private float initTime = 0.0f;
 
@@ -14,7 +14,7 @@ public class BallController : MonoBehaviour {
 
   private int noteOffset;
 
-  private void Awake() {
+  void Awake() {
     source = GetComponent<AudioSource>();
     noteOffset = Random.Range(-8, 8);
   }
@@ -34,13 +34,13 @@ public class BallController : MonoBehaviour {
       return;
     }
 
-    if (Time.time - initTime > timeout) {
+    if (Time.time - initTime > destroyTimeout) {
       destroying = true;
       return;
     }
 	}
 
-  private void OnCollisionEnter(Collision collision) {
+  void OnCollisionEnter(Collision collision) {
     int index = noteOffset + Random.Range(0, 8);
     int octaveShift = Mathf.FloorToInt((float)index / 8.0f);
     int offset = (index + 32) % Scale.majorScale.Length;

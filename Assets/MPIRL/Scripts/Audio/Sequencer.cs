@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sequencer : MonoBehaviour {
   public delegate void SequencerEvent(int section, int bar, int beat, double dspTime);
-  public event SequencerEvent OnNextBeat;
+  public static event SequencerEvent OnNextBeat;
 
   // Uses quarter notes for time signature, i.e., "numBeats/4".
   public double bpm = 120.0;

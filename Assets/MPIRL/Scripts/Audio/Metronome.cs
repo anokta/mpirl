@@ -12,11 +12,11 @@ public class Metronome : MonoBehaviour {
   }
 
   void OnEnable() {
-    sequencer.OnNextBeat += OnNextBeat; 
+    Sequencer.OnNextBeat += OnNextBeat; 
   }
 
   void OnDisable() {
-    sequencer.OnNextBeat -= OnNextBeat;
+    Sequencer.OnNextBeat -= OnNextBeat;
   }
 
   private void Update() {
