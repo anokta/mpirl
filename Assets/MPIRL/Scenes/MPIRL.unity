@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 15293176}
   - component: {fileID: 15293177}
+  - component: {fileID: 15293178}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -154,8 +155,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 1779253710675806, guid: 1d8e31096ed9950468c793323d99f378, type: 2}
-  planePrefab: {fileID: 1654175882956584, guid: 1420e266d1199ca449c2f4a858748914,
+  planePrefab: {fileID: 1734077081714230, guid: 9b2cfa11e482e344fa14b719c5a53683,
     type: 2}
+--- !u!114 &15293178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15293175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1338de62b303c458ec903c0e67093e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 15293177}
+  mainCamera: {fileID: 896679035}
 --- !u!1001 &97747990
 Prefab:
   m_ObjectHideFlags: 0
@@ -267,6 +281,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 60, y: 30, z: 0}
+--- !u!20 &896679035 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20155940112608238, guid: c10877f7cd5764de18d46d7b777d1faa,
+    type: 2}
+  m_PrefabInternal: {fileID: 97747990}
 --- !u!1001 &1394164186
 Prefab:
   m_ObjectHideFlags: 0

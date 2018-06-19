@@ -15,17 +15,16 @@ public class GameManager : MonoBehaviour {
 
   private List<DetectedPlane> newPlanes;
 
+  private GameObject ballRoot;
   private GameObject planeRoot;
 
   private void Awake() {
     newPlanes = new List<DetectedPlane>();
+
+    ballRoot = new GameObject("Balls");
     planeRoot = new GameObject("Planes");
   }
-
-  void Start() {
-		
-	}
-	
+  
 	void Update() {
     // Exit the app when the 'back' button is pressed.
     if (Input.GetKey(KeyCode.Escape)) {
@@ -44,4 +43,10 @@ public class GameManager : MonoBehaviour {
       plane.GetComponent<PlaneController>().Initialize(newPlanes[i]);
     }
 	}
+
+  public void ThrowBall(Vector3 initalVelocity) {
+    var ball = GameObject.Instantiate(ballPrefab, ballRoot.transform);
+    ball.transform.localPosition = Camera.main.transform.position;
+    ball.GetComponent<Rigidbody>().AddForce(initalVelocity, ForceMode.VelocityChange);
+  }
 }
