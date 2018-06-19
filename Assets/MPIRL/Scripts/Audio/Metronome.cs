@@ -29,7 +29,7 @@ public class Metronome : MonoBehaviour {
     }
   }
 
-  private void OnNextBeat(int section, int bar, int beat, double dspTime) {
+  private void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
     source.Stop();
     source.pitch = beat == 0 ? 2.0f : 1.0f;
     source.PlayScheduled(dspTime);

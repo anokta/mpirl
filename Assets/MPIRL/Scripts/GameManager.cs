@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour {
     for (int i = 0; i < newPlanes.Count; ++i) {
       var plane = GameObject.Instantiate(planePrefab, planeRoot.transform);
       plane.GetComponent<PlaneController>().Initialize(newPlanes[i]);
+
+      // TEST //
+      plane.GetComponent<StaticBarGenerator>().noteOffset = Random.Range(-8, 8);
     }
 	}
 

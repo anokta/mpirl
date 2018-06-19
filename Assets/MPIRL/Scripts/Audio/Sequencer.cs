@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sequencer : MonoBehaviour {
-  public delegate void SequencerEvent(int section, int bar, int beat, double dspTime);
+  public delegate void SequencerEvent(int section, int bar, int beat, double dspTime, double beatTime);
   public static event SequencerEvent OnNextBeat;
 
   // Uses quarter notes for time signature, i.e., "numBeats/4".
@@ -77,7 +77,7 @@ public class Sequencer : MonoBehaviour {
 
   private void TriggerNextBeat() {
     if (OnNextBeat != null) {
-      OnNextBeat(currentSection, currentBar, currentBeat, targetDspTime); 
+      OnNextBeat(currentSection, currentBar, currentBeat, targetDspTime, numSecondsPerBeat); 
     }
   }
 }
