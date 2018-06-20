@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour {
   }
   
   void OnEnable() {
+    SongStructure.Initialize();
+    HarmonicProgression.Initialize(sequencer.numBars);
+
     sequencer.Play(AudioSettings.dspTime + 4.0f);  
   }
   

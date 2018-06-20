@@ -77,7 +77,7 @@ public class Sequencer : MonoBehaviour {
 
   private void TriggerNextBeat() {
     if (OnNextBeat != null) {
-      OnNextBeat(currentSection, currentBar, currentBeat, targetDspTime, numSecondsPerBeat); 
+      OnNextBeat(currentSection, currentBar, currentBeat, targetDspTime, numSecondsPerBeat);
     }
   }
 }

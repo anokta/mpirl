@@ -10,7 +10,7 @@ public class OneBarNote : Generator {
     double relativeBeat = beatOffset - beat;
     if (relativeBeat >= 0.0 && relativeBeat < 1.0) {
       double playTime = dspTime + relativeBeat * beatTime;
-      instrument.PlayNote(playTime, noteOffset);
+      instrument.PlayNote(playTime, HarmonicProgression.GetHarmonic(section, bar) + noteOffset);
     }
   }
 }

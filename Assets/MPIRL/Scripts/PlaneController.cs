@@ -60,7 +60,7 @@ public class PlaneController : MonoBehaviour {
       collision.transform.GetComponent<Renderer>().material.color = colliderRenderer.material.color;
 
       int noteIndex = Random.Range(0, instrument.scaleLength);
-      float noteVolume = 0.2f * collision.relativeVelocity.magnitude;
+      float noteVolume = 0.15f * collision.relativeVelocity.magnitude;
       instrument.PlayInteractable(noteIndex, noteVolume);
     }
   }
