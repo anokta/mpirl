@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
       plane.GetComponent<PlaneController>().Initialize(newPlanes[i]);
 
       // TEST //
-      plane.GetComponent<StaticBarGenerator>().noteOffset = Random.Range(-8, 8);
+      plane.GetComponentInChildren<StaticBarGenerator>().noteOffset = Random.Range(-8, 8);
     }
 	}
 

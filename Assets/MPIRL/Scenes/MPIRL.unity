@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e58afae4eb7ab46b6dfbb5b0f0de15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxVolume: 0.4
   layer1: {fileID: 1497940534}
   layer2: {fileID: 1497940533}
 --- !u!1 &1671603097

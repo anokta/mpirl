@@ -7,6 +7,8 @@ public class PlaneController : MonoBehaviour {
   public BoxCollider boxCollider;
   public MeshRenderer colliderRenderer;
 
+  public AudioSource interactableAudio;
+
   public float colliderHeight = 0.02f;
   public float scaleSpeed = 8.0f;
   public float idleAlpha = 0.5f;
@@ -49,5 +51,14 @@ public class PlaneController : MonoBehaviour {
     transform.parent = anchor.transform;
     transform.localPosition = -0.5f * colliderHeight * Vector3.up;
     transform.localRotation = Quaternion.identity;
+  }
+
+  public void PlaySound(int noteOffset) {
+      var generator = GetComponentInChildren<StaticBarGenerator>();
+      int index = generator.noteOffset + noteOffset;
+      int octaveShift = Mathf.FloorToInt((float)index / 8.0f);
+      int offset = (index + 32) % Scale.majorScale.Length;
+      interactableAudio.pitch = Mathf.Pow(2.0f, octaveShift) * Scale.majorScale[offset];
+      interactableAudio.PlayOneShot(generator.source.clip);
   }
 }
