@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
     source.volume = 
-      Mathf.Min(0.2f, Mathf.Lerp(source.volume, transform.localScale.sqrMagnitude * rigidBody.velocity.magnitude, 5.0f * Time.deltaTime));
+      Mathf.Min(0.2f, Mathf.Lerp(source.volume, transform.localScale.sqrMagnitude * rigidBody.velocity.magnitude, 4.0f * Time.deltaTime));
     if (destroying) {
       transform.localScale = 
         Vector3.Lerp(transform.localScale, Vector3.zero, destroySpeed * Time.deltaTime);
@@ -36,13 +36,6 @@ public class BallController : MonoBehaviour {
       return;
     }
 	}
-
-  void OnCollisionEnter(Collision collision) {
-    if (collision.transform.tag == "Plane") {
-      GetComponent<Renderer>().material.color = collision.transform.GetComponent<Renderer>().material.color;
-      collision.transform.GetComponent<PlaneController>().PlaySound(Random.Range(0, 8));
-    }
-  }
 
   void OnCollisionExit(Collision collision) {
     initTime = Time.time;

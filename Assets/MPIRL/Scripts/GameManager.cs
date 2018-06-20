@@ -52,10 +52,11 @@ public class GameManager : MonoBehaviour {
     Session.GetTrackables<DetectedPlane>(newPlanes, TrackableQueryFilter.New);
     for (int i = 0; i < newPlanes.Count; ++i) {
       var plane = GameObject.Instantiate(planePrefab, planeRoot.transform);
-      plane.GetComponent<PlaneController>().Initialize(newPlanes[i]);
+      var planeController = plane.GetComponent<PlaneController>();
+      planeController.Initialize(newPlanes[i]);
 
       // TEST //
-      plane.GetComponentInChildren<StaticBarGenerator>().noteOffset = Random.Range(-8, 8);
+      planeController.instrument.noteOffset = Random.Range(-8, 8);
     }
 	}
 

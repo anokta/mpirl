@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour {
     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 #endif  // UNITY_EDITOR
       Vector3 velocity = mainCamera.transform.forward;
-      velocity.y += Random.Range(0.0f, 0.25f);
+      velocity.y += Random.Range(0.0f, 0.2f);
       gameManager.ThrowBall(3.0f * velocity);
       return;
     }
