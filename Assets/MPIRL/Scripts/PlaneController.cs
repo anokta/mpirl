@@ -9,6 +9,7 @@ public class PlaneController : MonoBehaviour {
   public MeshRenderer colliderRenderer;
 
   public Instrument instrument;
+  public Generator generator;
 
   public float colliderHeight = 0.02f;
   public float scaleSpeed = 8.0f;

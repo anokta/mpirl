@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
   public Sequencer sequencer;
 
+  public AudioClip[] clips;
+
   private List<DetectedPlane> newPlanes;
 
   private GameObject ballRoot;
@@ -51,12 +53,7 @@ public class GameManager : MonoBehaviour {
     // Iterate over planes found in this frame and instantiate corresponding planes.
     Session.GetTrackables<DetectedPlane>(newPlanes, TrackableQueryFilter.New);
     for (int i = 0; i < newPlanes.Count; ++i) {
-      var plane = GameObject.Instantiate(planePrefab, planeRoot.transform);
-      var planeController = plane.GetComponent<PlaneController>();
-      planeController.Initialize(newPlanes[i]);
-
-      // TEST //
-      planeController.instrument.noteOffset = Random.Range(-8, 8);
+      InitializeNewPlane(newPlanes[i]);
     }
 	}
 
@@ -64,5 +61,20 @@ public class GameManager : MonoBehaviour {
     var ball = GameObject.Instantiate(ballPrefab, ballRoot.transform);
     ball.transform.localPosition = Camera.main.transform.position;
     ball.GetComponent<Rigidbody>().AddForce(initalVelocity, ForceMode.VelocityChange);
+  }
+
+  private void InitializeNewPlane(DetectedPlane detectedPlane) {
+    var plane = GameObject.Instantiate(planePrefab, planeRoot.transform);
+    var planeController = plane.GetComponent<PlaneController>();
+
+    planeController.Initialize(detectedPlane);
+    planeController.generator = 
+      GeneratorFactory.CreateGenerator(planeController.instrument, "OneBarNote");
+    
+
+    // TEST //
+    planeController.instrument.noteOffset = Random.Range(-8, 8);
+    planeController.instrument.SetSample(clips[Random.Range(0, clips.Length)]);
+    (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
   }
 }

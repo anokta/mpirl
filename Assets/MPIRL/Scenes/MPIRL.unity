@@ -159,6 +159,27 @@ MonoBehaviour:
   planePrefab: {fileID: 1734077081714230, guid: 9b2cfa11e482e344fa14b719c5a53683,
     type: 2}
   sequencer: {fileID: 15293179}
+  clips:
+  - {fileID: 8300000, guid: 085d27a332684a443b5a31687a5cc339, type: 3}
+  - {fileID: 8300000, guid: 73935f484f8c07b47b97cb2d98e70753, type: 3}
+  - {fileID: 8300000, guid: 797bfb1375213eb45babc44a69f242b1, type: 3}
+  - {fileID: 8300000, guid: 2267a414ce35504439949fa25cd58eab, type: 3}
+  - {fileID: 8300000, guid: c4ebb9a36d3cc1846a6ef883974fe3d7, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+  - {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
 --- !u!114 &15293178
 MonoBehaviour:
   m_ObjectHideFlags: 0

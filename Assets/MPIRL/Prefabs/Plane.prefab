@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4763596712674118}
   - component: {fileID: 114126560838196202}
   - component: {fileID: 114975002329232838}
-  - component: {fileID: 114170740203566128}
   - component: {fileID: 82478761253887372}
   m_Layer: 0
   m_Name: Instrument
@@ -364,18 +363,6 @@ MonoBehaviour:
   main: {fileID: 82478761253887372}
   interactable: {fileID: 82859691633279978}
   noteOffset: 0
---- !u!114 &114170740203566128
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1396503401354274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a7fd5fae688d1d43be0818e9da6570b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instrument: {fileID: 114126560838196202}
 --- !u!114 &114975002329232838
 MonoBehaviour:
   m_ObjectHideFlags: 1
