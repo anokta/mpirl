@@ -197,15 +197,16 @@ AudioSource:
   m_GameObject: {fileID: 1396503401354274}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fc21be341fb6ff3489c0d761d4152c04,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
+  Spatialize: 1
+  SpatializePostEffects: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -292,15 +293,16 @@ AudioSource:
   m_GameObject: {fileID: 1649372996844784}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fc21be341fb6ff3489c0d761d4152c04,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
+  Spatialize: 1
+  SpatializePostEffects: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -404,8 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbf6ead3d28a344e960ba7dcb2d3f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMultiplier: 1.075
-  scaleSpeed: 1.5
+  scaleMultiplier: 1.05
+  scaleSpeed: 4
 --- !u!114 &114975002329232838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,5 +442,5 @@ MonoBehaviour:
   instrument: {fileID: 114126560838196202}
   generator: {fileID: 0}
   colliderHeight: 0.025
-  scaleSpeed: 8
+  scaleSpeed: 6
   idleAlpha: 0.5

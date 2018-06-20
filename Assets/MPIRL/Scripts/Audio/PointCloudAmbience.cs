@@ -6,17 +6,12 @@ using GoogleARCore;
 public class PointCloudAmbience : MonoBehaviour {
   public float maxVolume = 0.4f;
 
-  public AudioSource layer1, layer2;
+  public AudioSource layer1Left, layer1Right, layer2a, layer2b;
 
-  private float gain1 = 0.0f, gain2 = 0.0f;
+  private float gain1 = 0.0f, gain2a = 0.0f, gain2b = 0.0f;
 
   private float rampSpeed = 4.0f;
 
-  void Awake() {
-    layer1.volume = gain1;
-    layer2.volume = gain2;
-  }
-  
   void OnEnable() {
     Sequencer.OnNextBeat += OnNextBeat;
   }
@@ -26,21 +21,33 @@ public class PointCloudAmbience : MonoBehaviour {
   }
 
   void Update() {
+    if (!layer1Left.isPlaying) {
+      // Playback hasn't started yet.
+      return;
+    }
+
     int numPoints = Frame.PointCloud.PointCount;
     gain1 = 0.025f + numPoints > 0 ? 0.1f + 0.125f * numPoints / 100.0f : 0.0f;
-    gain2 = numPoints > 20 ? 0.125f * numPoints / 200.0f : 0.0f;
+    gain2a = numPoints > 20 ? 0.125f * numPoints / 200.0f : 0.0f;
+    gain2b = numPoints > 50 ? 0.1f * numPoints / 400.0f : 0.0f;
 
-    if (Mathf.Abs(layer1.volume - gain1) > 0.01f) {
-      layer1.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer1.volume, gain1, rampSpeed * Time.deltaTime));
+    if (Mathf.Abs(layer1Left.volume - gain1) > 0.01f) {
+      layer1Left.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer1Left.volume, gain1, rampSpeed * Time.deltaTime));
+      layer1Right.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer1Right.volume, gain1, rampSpeed * Time.deltaTime));
     }
-    if (Mathf.Abs(layer2.volume - gain2) > 0.01f) {
-      layer2.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer2.volume, gain2, rampSpeed * Time.deltaTime));
+    if (Mathf.Abs(layer2a.volume - gain2a) > 0.01f) {
+      layer2a.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer2a.volume, gain2a, rampSpeed * Time.deltaTime));
+    }
+    if (Mathf.Abs(layer2b.volume - gain2b) > 0.01f) {
+      layer2b.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer2b.volume, gain2b, rampSpeed * Time.deltaTime));
     }
   }
 
   private void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
-    layer1.PlayScheduled(dspTime);
-    layer2.PlayScheduled(dspTime);
+    layer1Left.PlayScheduled(dspTime);
+    layer1Right.PlayScheduled(dspTime);
+    layer2a.PlayScheduled(dspTime);
+    layer2b.PlayScheduled(dspTime);
     Sequencer.OnNextBeat -= OnNextBeat;
   }
 }

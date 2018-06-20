@@ -20,12 +20,11 @@ public class Sequencer : MonoBehaviour {
   private double numSecondsPerBeat = 0.0;
 
   private double targetDspTime = 0.0;
+  private double lookaheadSeconds = 0.0;
 
-  private double lookaheadSeconds = 0.0f;
-
-  private void Awake() {
+  void Awake() {
     lookaheadSeconds = 2.0 * (double)Time.fixedUnscaledDeltaTime;
-    OnValidate();
+    CalculateNumSamplesPerBeat();
   }
 
   void Update() {
@@ -48,16 +47,13 @@ public class Sequencer : MonoBehaviour {
       }
     }
   }
-  
-  void OnValidate() {
-    CalculateNumSamplesPerBeat();
-  }
 
   public void Play(double startDspTime) {
     currentBeat = 0;
     currentBar = 0;
     currentSection = 0;
     targetDspTime = startDspTime;
+    
     IsPlaying = true;
   }
 
@@ -68,11 +64,13 @@ public class Sequencer : MonoBehaviour {
   private void CalculateNumSamplesPerBeat() {
     double previousTarget = targetDspTime - numSecondsPerBeat;
     numSecondsPerBeat = (bpm > 0.0) ? 60.0 / bpm : 0.0;
-    if (numSecondsPerBeat > 0.0) {
-      double currentDspTime = AudioSettings.dspTime;
-      double timeOffset = currentDspTime - previousTarget;
-      targetDspTime = currentDspTime + numSecondsPerBeat - (timeOffset - System.Math.Floor(timeOffset / numSecondsPerBeat) * numSecondsPerBeat);
-    }
+
+    // This seems buggy, turning it off as it's not really used anyway.
+    //if (numSecondsPerBeat > 0.0) {
+    //  double currentDspTime = AudioSettings.dspTime;
+    //  double timeOffset = currentDspTime - previousTarget;
+    //  targetDspTime = currentDspTime + numSecondsPerBeat - (timeOffset - System.Math.Floor(timeOffset / numSecondsPerBeat) * numSecondsPerBeat);
+    //}
   }
 
   private void TriggerNextBeat() {

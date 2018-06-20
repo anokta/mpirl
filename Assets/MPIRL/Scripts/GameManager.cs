@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
   private GameObject ballRoot;
   private GameObject planeRoot;
 
+  private bool started = false;
+
   void Awake() {
     newPlanes = new List<DetectedPlane>();
 
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour {
     SongStructure.Initialize();
     HarmonicProgression.Initialize(sequencer.numBars);
 
-    sequencer.Play(AudioSettings.dspTime + 4.0f);  
+    sequencer.Play(AudioSettings.dspTime + 3.0);  
   }
   
   void OnDisable() {
