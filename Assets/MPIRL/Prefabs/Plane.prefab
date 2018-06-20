@@ -11,6 +11,24 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1734077081714230}
   m_IsPrefabParent: 1
+--- !u!1 &1383087894383600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4347823891375864}
+  - component: {fileID: 33390420672399280}
+  - component: {fileID: 23351022546775404}
+  - component: {fileID: 114382584719817222}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1396503401354274
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,8 +71,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4229047480869114}
-  - component: {fileID: 33065912973433386}
-  - component: {fileID: 23508989697192056}
   - component: {fileID: 65044201087412156}
   - component: {fileID: 114979342399458412}
   m_Layer: 0
@@ -88,8 +104,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4763596712674118}
+  - {fileID: 4347823891375864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4347823891375864
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383087894383600}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4229047480869114}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4763596712674118
 Transform:
@@ -105,12 +135,12 @@ Transform:
   m_Father: {fileID: 4229047480869114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23508989697192056
+--- !u!23 &23351022546775404
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734077081714230}
+  m_GameObject: {fileID: 1383087894383600}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -140,12 +170,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33065912973433386
+--- !u!33 &33390420672399280
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734077081714230}
+  m_GameObject: {fileID: 1383087894383600}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65044201087412156
 BoxCollider:
@@ -363,6 +393,19 @@ MonoBehaviour:
   main: {fileID: 82478761253887372}
   interactable: {fileID: 82859691633279978}
   noteOffset: 0
+--- !u!114 &114382584719817222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383087894383600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbf6ead3d28a344e960ba7dcb2d3f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 1.075
+  scaleSpeed: 1.5
 --- !u!114 &114975002329232838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,12 +417,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fe40d0582bdc84b9746d6efa433ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 23508989697192056}
+  meshRenderer: {fileID: 23351022546775404}
   sources:
   - {fileID: 82478761253887372}
   - {fileID: 82859691633279978}
-  amplitudeFactor: 20
-  reactSpeed: 2.5
+  amplitudeFactor: 24
+  reactSpeed: 4
 --- !u!114 &114979342399458412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,8 +435,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 65044201087412156}
-  colliderRenderer: {fileID: 23508989697192056}
+  visualRenderer: {fileID: 23351022546775404}
+  pulseVisualizer: {fileID: 114382584719817222}
   instrument: {fileID: 114126560838196202}
+  generator: {fileID: 0}
   colliderHeight: 0.025
   scaleSpeed: 8
   idleAlpha: 0.5

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetronomeVisualizer : MonoBehaviour {
+public class PulseVisualizer : MonoBehaviour {
   public float scaleMultiplier = 1.1f;
+  public float scaleSpeed = 1.5f;
 
   private Vector3 initialScale;
 
@@ -19,17 +20,17 @@ public class MetronomeVisualizer : MonoBehaviour {
     Sequencer.OnNextBeat -= OnNextBeat;
   }
 
-  private void Update() {
+  void Update() {
     if (Vector3.Distance(transform.localScale, initialScale) > 0.002f) {
-      transform.localScale = Vector3.Lerp(transform.localScale, initialScale, 2.0f * Time.deltaTime);
+      transform.localScale = Vector3.Lerp(transform.localScale, initialScale, scaleSpeed * Time.deltaTime);
     }
+  }
+
+  public void Pulse() {
+    transform.localScale = initialScale * scaleMultiplier;
   }
 
   private void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
     Invoke("Pulse", (float)(beatTime - AudioSettings.dspTime));
-  }
-
-  private void Pulse() {
-    transform.localScale = initialScale * scaleMultiplier;
   }
 }

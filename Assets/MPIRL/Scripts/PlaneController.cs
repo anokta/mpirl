@@ -6,10 +6,13 @@ using GoogleARCore;
 public class PlaneController : MonoBehaviour {
   public BoxCollider boxCollider;
 
-  public MeshRenderer colliderRenderer;
+  public MeshRenderer visualRenderer;
+  public PulseVisualizer pulseVisualizer;
 
   public Instrument instrument;
-  public Generator generator;
+
+  [HideInInspector]
+  public Generator generator = null;
 
   public float colliderHeight = 0.02f;
   public float scaleSpeed = 8.0f;
@@ -34,23 +37,26 @@ public class PlaneController : MonoBehaviour {
     
     if (detectedPlane.TrackingState != TrackingState.Tracking) {
       boxCollider.enabled = false;
-      colliderRenderer.enabled = false;
+      visualRenderer.enabled = false;
       return;
     }
 
     boxCollider.enabled = true;
-    colliderRenderer.enabled = true;
+    visualRenderer.enabled = true;
 
     var targetScale = new Vector3(0.5f * detectedPlane.ExtentX, colliderHeight, 0.5f * detectedPlane.ExtentZ);
     transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
+
+    if (visualRenderer.material.color.a > idleAlpha) {
+      pulseVisualizer.Pulse();
+    }
 	}
 
   public void Initialize(DetectedPlane plane) {
-    colliderRenderer.material.color = ColorGenerator.Generate(idleAlpha);
+    visualRenderer.material.color = ColorGenerator.Generate(idleAlpha);
 
     detectedPlane = plane;
     anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
-    anchor.gameObject.AddComponent<MetronomeVisualizer>();
     transform.parent = anchor.transform;
     transform.localPosition = -0.5f * colliderHeight * Vector3.up;
     transform.localRotation = Quaternion.identity;
@@ -58,7 +64,7 @@ public class PlaneController : MonoBehaviour {
 
   void OnCollisionEnter(Collision collision) {
     if (collision.transform.tag == "Ball") {
-      collision.transform.GetComponent<Renderer>().material.color = colliderRenderer.material.color;
+      collision.transform.GetComponent<Renderer>().material.color = visualRenderer.material.color;
 
       int noteIndex = Random.Range(0, instrument.scaleLength);
       float noteVolume = 0.15f * collision.relativeVelocity.magnitude;

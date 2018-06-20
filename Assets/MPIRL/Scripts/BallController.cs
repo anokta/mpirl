@@ -33,7 +33,6 @@ public class BallController : MonoBehaviour {
 
     if (Time.time - initTime > destroyTimeout) {
       destroying = true;
-      GetComponent<MetronomeVisualizer>().enabled = false;
       return;
     }
 	}
