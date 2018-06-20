@@ -8,6 +8,12 @@ using GoogleARCore;
     using Input = GoogleARCore.InstantPreviewInput;
 #endif
 
+[System.Serializable]
+public struct PerformerType {
+  public AudioClip sample;
+  public string generatorName;
+}
+
 public class GameManager : MonoBehaviour {
   public GameObject ballPrefab;
 
@@ -15,7 +21,7 @@ public class GameManager : MonoBehaviour {
 
   public Sequencer sequencer;
 
-  public AudioClip[] clips;
+  public PerformerType[] performerTypes;
 
   private List<DetectedPlane> newPlanes;
 
@@ -71,13 +77,19 @@ public class GameManager : MonoBehaviour {
     var planeController = plane.GetComponent<PlaneController>();
 
     planeController.Initialize(detectedPlane);
-    planeController.generator = 
-      GeneratorFactory.CreateGenerator(planeController.instrument, "OneBarNote");
-    
+
+    var performerType = performerTypes[Random.Range(0, performerTypes.Length)];
+    planeController.instrument.SetSample(performerType.sample);
+    planeController.generator = GeneratorFactory.CreateGenerator(planeController.instrument, 
+                                                                 performerType.generatorName);
+
 
     // TEST //
-    planeController.instrument.noteOffset = Random.Range(-8, 8);
-    planeController.instrument.SetSample(clips[Random.Range(0, clips.Length)]);
-    (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
+    if (!performerType.sample.name.StartsWith("drum")) {
+      planeController.instrument.noteOffset = Random.Range(-8, 8);
+    }
+    if (performerType.generatorName == "OneBarNote") {
+      (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
+    }
   }
 }
