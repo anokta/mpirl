@@ -66,7 +66,7 @@ public class PlaneController : MonoBehaviour {
     if (collision.transform.tag == "Ball") {
       collision.transform.GetComponent<Renderer>().material.color = visualRenderer.material.color;
 
-      int noteIndex = Random.Range(0, instrument.scaleLength);
+      int noteIndex = Random.Range(0, Scale.scaleLength);
       float noteVolume = 0.15f * collision.relativeVelocity.magnitude;
       instrument.PlayInteractable(noteIndex, noteVolume);
     }

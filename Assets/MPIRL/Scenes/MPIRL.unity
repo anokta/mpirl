@@ -161,11 +161,11 @@ MonoBehaviour:
   sequencer: {fileID: 15293179}
   performerTypes:
   - sample: {fileID: 8300000, guid: c02df1de379e95f49bada6c06165ee73, type: 3}
-    generatorName: OneBarNote
+    generatorName: SimpleBassline
   - sample: {fileID: 8300000, guid: 52d811919a012314889df987424d63c2, type: 3}
-    generatorName: OneBarNote
+    generatorName: SimpleBassline
   - sample: {fileID: 8300000, guid: 05d6881419fe5114084def7ec9b604a9, type: 3}
-    generatorName: OneBarNote
+    generatorName: SimpleBassline
   - sample: {fileID: 8300000, guid: 797bfb1375213eb45babc44a69f242b1, type: 3}
     generatorName: OneBarNote
   - sample: {fileID: 8300000, guid: 2267a414ce35504439949fa25cd58eab, type: 3}

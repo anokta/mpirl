@@ -97,5 +97,8 @@ public class GameManager : MonoBehaviour {
     if (performerType.generatorName == "OneBarNote") {
       (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
     }
+    if (performerType.generatorName == "SimpleBassline") {
+      (planeController.generator as SimpleBassline).beatOffset = Random.Range(0, 4);
+    }
   }
 }

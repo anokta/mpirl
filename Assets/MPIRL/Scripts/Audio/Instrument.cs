@@ -7,8 +7,6 @@ public class Instrument : MonoBehaviour {
 
   public int noteOffset = 0;
 
-  public readonly int scaleLength = Scale.majorScale.Length;
-
   public void PlayNote(double dspTime, int index, float volume = 1.0f) {
       main.pitch = GetPitch(index);
       main.volume = volume;
@@ -27,8 +25,8 @@ public class Instrument : MonoBehaviour {
 
   private float GetPitch(int index) {
     int noteIndex = noteOffset + index;
-    int octaveShift = Mathf.FloorToInt((float)noteIndex / scaleLength);
-    int offset = (noteIndex + 4 * scaleLength) % scaleLength;
+    int octaveShift = Mathf.FloorToInt((float)noteIndex / Scale.scaleLength);
+    int offset = (noteIndex + 4 * Scale.scaleLength) % Scale.scaleLength;
     return Mathf.Pow(2.0f, octaveShift) * Scale.majorScale[offset];
   }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Generator : MonoBehaviour {
   public Instrument instrument;
 
-  protected void Awake() {
+  protected virtual void Awake() {
     instrument = GetComponent<Instrument>();
   }
 

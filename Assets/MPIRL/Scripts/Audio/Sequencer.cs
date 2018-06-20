@@ -23,7 +23,6 @@ public class Sequencer : MonoBehaviour {
   private double lookaheadSeconds = 0.0;
   private bool hasStarted = false;
 
-
   void Awake() {
     lookaheadSeconds = 2.0 * (double)Time.fixedUnscaledDeltaTime;
     CalculateNumSamplesPerBeat();
