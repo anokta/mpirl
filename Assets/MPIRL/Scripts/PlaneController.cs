@@ -50,6 +50,7 @@ public class PlaneController : MonoBehaviour {
 
     detectedPlane = plane;
     anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
+    anchor.gameObject.AddComponent<MetronomeVisualizer>();
     transform.parent = anchor.transform;
     transform.localPosition = -0.5f * colliderHeight * Vector3.up;
     transform.localRotation = Quaternion.identity;

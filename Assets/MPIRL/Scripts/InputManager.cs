@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour {
 #endif  // UNITY_EDITOR
       Vector3 velocity = mainCamera.transform.forward;
       velocity.y += Random.Range(0.0f, 0.1f);
-      gameManager.ThrowBall(5.0f * velocity);
+      gameManager.ThrowBall(6.0f * velocity);
       return;
     }
 	}
