@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
     SongStructure.Initialize();
     HarmonicProgression.Initialize(sequencer.numBars);
 
-    sequencer.Play(AudioSettings.dspTime + 3.0);  
+    sequencer.Play(AudioSettings.dspTime + 2.5);  
   }
   
   void OnDisable() {
@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour {
     // Exit the app when the 'back' button is pressed.
     if (Input.GetKey(KeyCode.Escape)) {
       Application.Quit();
+      return;
+    }
+
+    if (!sequencer.IsPlaying) {
       return;
     }
 

@@ -21,6 +21,8 @@ public class Sequencer : MonoBehaviour {
 
   private double targetDspTime = 0.0;
   private double lookaheadSeconds = 0.0;
+  private bool hasStarted = false;
+
 
   void Awake() {
     lookaheadSeconds = 2.0 * (double)Time.fixedUnscaledDeltaTime;
@@ -28,7 +30,7 @@ public class Sequencer : MonoBehaviour {
   }
 
   void Update() {
-    if (!IsPlaying || numSecondsPerBeat <= 0.0f) {
+    if (!hasStarted || numSecondsPerBeat <= 0.0f) {
       return;
     }
 
@@ -54,10 +56,11 @@ public class Sequencer : MonoBehaviour {
     currentSection = 0;
     targetDspTime = startDspTime;
     
-    IsPlaying = true;
+    hasStarted = true;
   }
 
   public void Stop() {
+    hasStarted = false;
     IsPlaying = false;
   }
 
@@ -74,6 +77,7 @@ public class Sequencer : MonoBehaviour {
   }
 
   private void TriggerNextBeat() {
+    IsPlaying = true;
     if (OnNextBeat != null) {
       OnNextBeat(currentSection, currentBar, currentBeat, targetDspTime, numSecondsPerBeat);
     }
