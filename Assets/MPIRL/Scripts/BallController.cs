@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour {
   public AudioSource source;
+
+  public Rigidbody rigidBody;
   
   public float destroyTimeout = 2.5f;
 
@@ -11,17 +13,15 @@ public class BallController : MonoBehaviour {
 
   private bool destroying = false;
   private float destroySpeed = 16.0f;
-
-  void Awake() {
-    source = GetComponent<AudioSource>();
-  }
-
+  
   void Start () {
     initTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+    source.volume = 
+      Mathf.Min(0.2f, Mathf.Lerp(source.volume, transform.localScale.sqrMagnitude * rigidBody.velocity.magnitude, 5.0f * Time.deltaTime));
     if (destroying) {
       transform.localScale = 
         Vector3.Lerp(transform.localScale, Vector3.zero, destroySpeed * Time.deltaTime);
