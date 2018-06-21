@@ -8,12 +8,6 @@ using GoogleARCore;
     using Input = GoogleARCore.InstantPreviewInput;
 #endif
 
-[System.Serializable]
-public struct PerformerType {
-  public AudioClip sample;
-  public string generatorName;
-}
-
 public class GameManager : MonoBehaviour {
   public Camera mainCamera;
 
@@ -23,23 +17,19 @@ public class GameManager : MonoBehaviour {
 
   public Sequencer sequencer;
 
-  public PerformerType[] performerTypes;
+  public PerformerSelector performerSelector;
 
   private List<DetectedPlane> newPlanes;
 
   private GameObject ballRoot;
   private GameObject planeRoot;
 
-  private List<int> lastUsedPerformers;
-  private readonly int numLastPerformers = 3;
 
   void Awake() {
     newPlanes = new List<DetectedPlane>();
 
     ballRoot = new GameObject("Balls");
     planeRoot = new GameObject("Planes");
-    
-    lastUsedPerformers = new List<int>();
 
     Screen.sleepTimeout = SleepTimeout.NeverSleep;
   }
@@ -90,32 +80,15 @@ public class GameManager : MonoBehaviour {
     var planeController = plane.GetComponent<PlaneController>();
 
     planeController.Initialize(detectedPlane);
-
-    // Make sure performers are diversed to a certain extent.
-    int performerIndex = 0;
-    int numRetries = 5;
-    int retry = 0;
-    do {
-      performerIndex = Random.Range(0, performerTypes.Length);
-      if (retry++ > numRetries) {
-        break;
-      }
-    } while (lastUsedPerformers.Contains(performerIndex));
-    lastUsedPerformers.Add(performerIndex);
-    if (lastUsedPerformers.Count > numLastPerformers) {
-      lastUsedPerformers.RemoveAt(0);
-    }
-
-    var performerType = performerTypes[performerIndex];
+    
+    var performerType = performerSelector.GetNextPerformerType();
     planeController.instrument.SetSample(performerType.sample);
     planeController.generator = GeneratorFactory.CreateGenerator(planeController.instrument, 
                                                                  performerType.generatorName);
 
 
     // TEST //
-    if (performerType.generatorName != "Drums") {
-      planeController.instrument.noteOffset = Random.Range(-8, 8);
-    } else {
+    if (performerType.generatorName == "Drums") {
       var generator = planeController.generator as Drums;
       if (performerType.sample.name.Contains("kick")) {
         generator.drumType = DrumType.KICK;
@@ -127,8 +100,11 @@ public class GameManager : MonoBehaviour {
         generator.drumType = DrumType.HH_CLOSED;
       } else if (performerType.sample.name.Contains("open")) {
         generator.drumType = DrumType.HH_OPEN;
-      } 
+      }
+    } else if (performerType.generatorName != "SimpleBassline") {
+      planeController.instrument.noteOffset = Random.Range(-8, 8);
     }
+
     if (performerType.generatorName == "OneBarNote") {
       (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
     }

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 15293177}
   - component: {fileID: 15293178}
   - component: {fileID: 15293179}
+  - component: {fileID: 15293180}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -160,27 +161,7 @@ MonoBehaviour:
   planePrefab: {fileID: 1734077081714230, guid: 9b2cfa11e482e344fa14b719c5a53683,
     type: 2}
   sequencer: {fileID: 15293179}
-  performerTypes:
-  - sample: {fileID: 8300000, guid: c02df1de379e95f49bada6c06165ee73, type: 3}
-    generatorName: OneBarNote
-  - sample: {fileID: 8300000, guid: 52d811919a012314889df987424d63c2, type: 3}
-    generatorName: OneBarNote
-  - sample: {fileID: 8300000, guid: 05d6881419fe5114084def7ec9b604a9, type: 3}
-    generatorName: SimpleBassline
-  - sample: {fileID: 8300000, guid: 797bfb1375213eb45babc44a69f242b1, type: 3}
-    generatorName: Drums
-  - sample: {fileID: 8300000, guid: 2267a414ce35504439949fa25cd58eab, type: 3}
-    generatorName: Drums
-  - sample: {fileID: 8300000, guid: 73935f484f8c07b47b97cb2d98e70753, type: 3}
-    generatorName: Drums
-  - sample: {fileID: 8300000, guid: 085d27a332684a443b5a31687a5cc339, type: 3}
-    generatorName: Drums
-  - sample: {fileID: 8300000, guid: c4ebb9a36d3cc1846a6ef883974fe3d7, type: 3}
-    generatorName: Drums
-  - sample: {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
-    generatorName: OneBarNote
-  - sample: {fileID: 8300000, guid: 52d811919a012314889df987424d63c2, type: 3}
-    generatorName: OneBarNote
+  performerSelector: {fileID: 15293180}
 --- !u!114 &15293178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +189,53 @@ MonoBehaviour:
   bpm: 122
   numBeats: 4
   numBars: 4
+--- !u!114 &15293180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15293175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fe8c1967ec6cb4ca2d321d359cf33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drums:
+    numLastPerformers: 4
+    performers:
+    - sample: {fileID: 8300000, guid: 797bfb1375213eb45babc44a69f242b1, type: 3}
+      generatorName: Drums
+      probability: 1
+    - sample: {fileID: 8300000, guid: 73935f484f8c07b47b97cb2d98e70753, type: 3}
+      generatorName: Drums
+      probability: 0.5
+    - sample: {fileID: 8300000, guid: 085d27a332684a443b5a31687a5cc339, type: 3}
+      generatorName: Drums
+      probability: 0.25
+    - sample: {fileID: 8300000, guid: c4ebb9a36d3cc1846a6ef883974fe3d7, type: 3}
+      generatorName: Drums
+      probability: 0.5
+    - sample: {fileID: 8300000, guid: 2267a414ce35504439949fa25cd58eab, type: 3}
+      generatorName: Drums
+      probability: 0.1
+  bass:
+    numLastPerformers: 2
+    performers:
+    - sample: {fileID: 8300000, guid: 05d6881419fe5114084def7ec9b604a9, type: 3}
+      generatorName: SimpleBassline
+      probability: 1
+    - sample: {fileID: 8300000, guid: 6a574e66e09673843a1a2e0ddb5e2e3b, type: 3}
+      generatorName: SimpleBassline
+      probability: 0.1
+  melody:
+    numLastPerformers: 1
+    performers:
+    - sample: {fileID: 8300000, guid: c02df1de379e95f49bada6c06165ee73, type: 3}
+      generatorName: OneBarNote
+      probability: 1
+    - sample: {fileID: 8300000, guid: 52d811919a012314889df987424d63c2, type: 3}
+      generatorName: OneBarNote
+      probability: 1
 --- !u!1 &78641324
 GameObject:
   m_ObjectHideFlags: 0
