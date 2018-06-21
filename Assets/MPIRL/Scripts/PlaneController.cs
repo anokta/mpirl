@@ -17,12 +17,17 @@ public class PlaneController : MonoBehaviour {
   public float colliderHeight = 0.02f;
   public float scaleSpeed = 8.0f;
   public float idleAlpha = 0.5f;
+  public float hitCoolTime = 0.1f;
 
   private DetectedPlane detectedPlane;
   private Anchor anchor;
 
+  private BarelyAPI.MarkovChain hitNoteGenerator;
+  private float lastHitTime = 0.0f;
+
   void Awake() {
     transform.localScale = Vector3.zero;
+    hitNoteGenerator = new BarelyAPI.MarkovChain(8, 1);
   }
 
   void Update() {
@@ -63,12 +68,15 @@ public class PlaneController : MonoBehaviour {
   }
 
   void OnCollisionEnter(Collision collision) {
-    if (collision.transform.tag == "Ball") {
+    if (Time.time - lastHitTime > hitCoolTime && collision.transform.tag == "Ball") {
       collision.transform.GetComponent<Renderer>().material.color = visualRenderer.material.color;
 
-      int noteIndex = Random.Range(0, Scale.scaleLength);
+      int noteIndex = hitNoteGenerator.CurrentState;
       float noteVolume = 0.15f * collision.relativeVelocity.magnitude;
       instrument.PlayInteractable(noteIndex, noteVolume);
+
+      hitNoteGenerator.GenerateNextState();
+      lastHitTime = Time.time;
     }
   }
 }

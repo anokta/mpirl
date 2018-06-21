@@ -441,6 +441,7 @@ MonoBehaviour:
   pulseVisualizer: {fileID: 114382584719817222}
   instrument: {fileID: 114126560838196202}
   generator: {fileID: 0}
-  colliderHeight: 0.025
+  colliderHeight: 0.05
   scaleSpeed: 6
   idleAlpha: 0.5
+  hitCoolTime: 0.1

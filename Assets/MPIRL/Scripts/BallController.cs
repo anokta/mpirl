@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour {
   public Rigidbody rigidBody;
   
   public float destroyTimeout = 2.5f;
+  public float noiseSpeed = 5.0f;
 
   private float initTime = 0.0f;
 
@@ -21,7 +22,7 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
     source.volume = 
-      Mathf.Min(0.2f, Mathf.Lerp(source.volume, transform.localScale.sqrMagnitude * rigidBody.velocity.magnitude, 6.0f * Time.deltaTime));
+      Mathf.Min(0.15f, Mathf.Lerp(source.volume, transform.localScale.sqrMagnitude * rigidBody.velocity.magnitude, noiseSpeed * Time.deltaTime));
     if (destroying) {
       transform.localScale = 
         Vector3.Lerp(transform.localScale, Vector3.zero, destroySpeed * Time.deltaTime);

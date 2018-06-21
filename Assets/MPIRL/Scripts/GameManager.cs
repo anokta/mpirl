@@ -29,12 +29,17 @@ public class GameManager : MonoBehaviour {
   private GameObject planeRoot;
 
   private bool started = false;
+  
+  private List<int> lastUsedPerformers;
+  private readonly int numLastPerformers = 3;
 
   void Awake() {
     newPlanes = new List<DetectedPlane>();
 
     ballRoot = new GameObject("Balls");
     planeRoot = new GameObject("Planes");
+    
+    lastUsedPerformers = new List<int>();
 
     Screen.sleepTimeout = SleepTimeout.NeverSleep;
   }
@@ -84,15 +89,43 @@ public class GameManager : MonoBehaviour {
 
     planeController.Initialize(detectedPlane);
 
-    var performerType = performerTypes[Random.Range(0, performerTypes.Length)];
+    // Make sure performers are diversed to a certain extent.
+    int performerIndex = 0;
+    int numRetries = 5;
+    int retry = 0;
+    do {
+      performerIndex = Random.Range(0, performerTypes.Length);
+      if (retry++ > numRetries) {
+        break;
+      }
+    } while (lastUsedPerformers.Contains(performerIndex));
+    lastUsedPerformers.Add(performerIndex);
+    if (lastUsedPerformers.Count > numLastPerformers) {
+      lastUsedPerformers.RemoveAt(0);
+    }
+
+    var performerType = performerTypes[performerIndex];
     planeController.instrument.SetSample(performerType.sample);
     planeController.generator = GeneratorFactory.CreateGenerator(planeController.instrument, 
                                                                  performerType.generatorName);
 
 
     // TEST //
-    if (!performerType.sample.name.StartsWith("drum")) {
+    if (performerType.generatorName != "Drums") {
       planeController.instrument.noteOffset = Random.Range(-8, 8);
+    } else {
+      var generator = planeController.generator as Drums;
+      if (performerType.sample.name.Contains("kick")) {
+        generator.drumType = DrumType.KICK;
+      } else if (performerType.sample.name.Contains("snare")) {
+        generator.drumType = DrumType.SNARE;
+      } else if (performerType.sample.name.Contains("clap")) {
+        generator.drumType = DrumType.CLAP;
+      } else if (performerType.sample.name.Contains("closed")) {
+        generator.drumType = DrumType.HH_CLOSED;
+      } else if (performerType.sample.name.Contains("open")) {
+        generator.drumType = DrumType.HH_OPEN;
+      } 
     }
     if (performerType.generatorName == "OneBarNote") {
       (planeController.generator as OneBarNote).beatOffset = 0.5 * Random.Range(0, 8);
