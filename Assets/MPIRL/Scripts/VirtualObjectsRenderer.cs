@@ -17,6 +17,12 @@ public class VirtualObjectsRenderer : MonoBehaviour {
     rendererTexture.height = height;
     rendererCamera.targetTexture = rendererTexture;
   }
+     
+  private void OnPreRender() {
+      // Make sure the projection matrix gets updated before post processing.
+      rendererCamera.projectionMatrix = GoogleARCore.Frame.CameraImage.GetCameraProjectionMatrix(
+        rendererCamera.nearClipPlane, rendererCamera.farClipPlane);
+    }
 
   void OnGUI() {
     GUI.DrawTexture(rendererWindow, rendererTexture);

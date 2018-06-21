@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbf6ead3d28a344e960ba7dcb2d3f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMultiplier: 1.05
+  scaleMultiplier: 1.06
   scaleSpeed: 4
 --- !u!114 &114975002329232838
 MonoBehaviour:
@@ -443,5 +443,5 @@ MonoBehaviour:
   amplitudeReactSpeed: 2.5
   colliderHeight: 0.0325
   scaleSpeed: 6
-  idleAlpha: 0.42
+  idleAlpha: 0.4
   hitCoolTime: 0.1

@@ -31,6 +31,6 @@ public class PulseVisualizer : MonoBehaviour {
   }
 
   private void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
-    Invoke("Pulse", (float)(beatTime - AudioSettings.dspTime));
+    Invoke("Pulse", (float)(dspTime - AudioSettings.dspTime));
   }
 }

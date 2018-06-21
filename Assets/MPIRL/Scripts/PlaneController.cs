@@ -56,7 +56,7 @@ public class PlaneController : MonoBehaviour {
     var targetScale = new Vector3(0.5f * detectedPlane.ExtentX, colliderHeight, 0.5f * detectedPlane.ExtentZ);
     transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
 
-    float colorMultiplier = Mathf.Min(2.0f, Mathf.Max(idleAlpha, amplitudeAnalyzer.GetAmplitude()));
+    float colorMultiplier = Mathf.Min(1.8f, Mathf.Max(idleAlpha, amplitudeAnalyzer.GetAmplitude()));
     visualRenderer.material.color = Color.Lerp(visualRenderer.material.color, colorMultiplier * mainColor, 
                                                amplitudeReactSpeed * Time.deltaTime);
     if (colorMultiplier > idleAlpha) {
@@ -75,7 +75,7 @@ public class PlaneController : MonoBehaviour {
 
   void OnCollisionEnter(Collision collision) {
     if (Time.time - lastHitTime > hitCoolTime && collision.transform.tag == "Ball") {
-      collision.transform.GetComponent<Renderer>().material.color = visualRenderer.material.color;
+      collision.transform.GetComponent<Renderer>().material.color = 1.5f * visualRenderer.material.color;
 
       int noteIndex = hitNoteGenerator.CurrentState;
       float noteVolume = 0.15f * collision.relativeVelocity.magnitude;
