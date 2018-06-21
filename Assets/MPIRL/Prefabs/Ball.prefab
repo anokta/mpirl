@@ -123,9 +123,9 @@ AudioSource:
   Priority: 256
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 100
+  MaxDistance: 8
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -133,23 +133,77 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.004345704
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -20.007967
+      outSlope: -20.007967
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.013157565
+      value: 0.8920264
+      inSlope: -3.898764
+      outSlope: -3.898764
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.5689552
+    - serializedVersion: 3
+      time: 0.035960577
+      value: 0.7166963
+      inSlope: -3.5097244
+      outSlope: -3.5097244
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.35677877
+    - serializedVersion: 3
+      time: 0.09558258
+      value: 0.41122437
+      inSlope: -3.3314617
+      outSlope: -3.3314617
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.42809704
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1985199
+      value: 0.20452881
+      inSlope: -1.859611
+      outSlope: -1.859611
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.54197353
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.41474
+      value: 0.051361084
+      inSlope: -0.31262448
+      outSlope: -0.31262448
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6439026
+      value: 0.027832031
+      inSlope: -0.06830111
+      outSlope: -0.06830111
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2969758
+      outWeight: 0.21342815
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.05001994
+      outSlope: -0.05001994
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -212,6 +266,8 @@ MonoBehaviour:
   source: {fileID: 82669043051208454}
   rigidBody: {fileID: 54576097965895240}
   destroyTimeout: 2
+  noiseSpeed: 4
+  maxNoiseVolume: 0.05
 --- !u!135 &135030294462510758
 SphereCollider:
   m_ObjectHideFlags: 1

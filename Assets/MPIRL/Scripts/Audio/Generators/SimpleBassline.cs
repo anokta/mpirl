@@ -10,7 +10,6 @@ public class SimpleBassline : Generator {
   private Dictionary<SectionType, Dictionary<int, int>> lines;
 
   // TODO(anokta): Get these from sequencer.
-  private readonly int numBars = 4;
   private readonly int numBeats = 4;
 
   protected override void Awake() {

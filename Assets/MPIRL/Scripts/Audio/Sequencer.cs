@@ -64,7 +64,8 @@ public class Sequencer : MonoBehaviour {
   }
 
   private void CalculateNumSamplesPerBeat() {
-    double previousTarget = targetDspTime - numSecondsPerBeat;
+    //double previousTarget = targetDspTime - numSecondsPerBeat;
+
     numSecondsPerBeat = (bpm > 0.0) ? 60.0 / bpm : 0.0;
 
     // This seems buggy, turning it off as it's not really used anyway.

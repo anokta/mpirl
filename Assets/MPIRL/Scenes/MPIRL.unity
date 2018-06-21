@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46629ccbfb0b48f48a784a2b3b463166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 896679035}
   ballPrefab: {fileID: 1779253710675806, guid: 1d8e31096ed9950468c793323d99f378, type: 2}
   planePrefab: {fileID: 1734077081714230, guid: 9b2cfa11e482e344fa14b719c5a53683,
     type: 2}
@@ -927,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxVolume: 0.24
-  rampSpeed: 2
+  rampSpeed: 2.4
   layer1Left: {fileID: 349806572}
   layer1Right: {fileID: 1338235625}
   layer2a: {fileID: 203121646}

@@ -15,6 +15,8 @@ public struct PerformerType {
 }
 
 public class GameManager : MonoBehaviour {
+  public Camera mainCamera;
+
   public GameObject ballPrefab;
 
   public GameObject planePrefab;
@@ -28,8 +30,6 @@ public class GameManager : MonoBehaviour {
   private GameObject ballRoot;
   private GameObject planeRoot;
 
-  private bool started = false;
-  
   private List<int> lastUsedPerformers;
   private readonly int numLastPerformers = 3;
 
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
 
   public void ThrowBall(Vector3 initalVelocity) {
     var ball = GameObject.Instantiate(ballPrefab, ballRoot.transform);
-    ball.transform.localPosition = Camera.main.transform.position;
+    ball.transform.localPosition = mainCamera.transform.position + 0.1f * mainCamera.transform.forward;
     ball.GetComponent<Rigidbody>().AddForce(initalVelocity, ForceMode.VelocityChange);
   }
 
