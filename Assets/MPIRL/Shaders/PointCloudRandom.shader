@@ -8,6 +8,9 @@ Properties{
         _PointSize("Point Size", Float) = 5.0
 }
   SubShader {
+     Tags{ "Queue" = "Background" }
+     Offset 0, 10
+     ZWrite Off
      Pass {
         CGPROGRAM
         #pragma vertex vert

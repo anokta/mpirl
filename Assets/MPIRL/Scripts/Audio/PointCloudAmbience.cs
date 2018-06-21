@@ -27,9 +27,9 @@ public class PointCloudAmbience : MonoBehaviour {
     }
 
     int numPoints = Frame.PointCloud.PointCount;
-    gain1 = 0.01f + numPoints > 0 ? 0.015f + 0.1f * numPoints / 125.0f : 0.0f;
+    gain1 = 0.025f + numPoints > 0 ? 0.025f + 0.1f * numPoints / 125.0f : 0.0f;
     gain2a = numPoints > 25 ? 0.1f * numPoints / 250.0f : 0.0f;
-    gain2b = numPoints > 100 ? 0.1f * numPoints / 500.0f : 0.0f;
+    gain2b = numPoints > 50 ? 0.1f * numPoints / 500.0f : 0.0f;
 
     if (Mathf.Abs(layer1Left.volume - gain1) > 0.01f) {
       layer1Left.volume = Mathf.Min(maxVolume, Mathf.Lerp(layer1Left.volume, gain1, rampSpeed * Time.deltaTime));

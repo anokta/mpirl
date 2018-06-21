@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmplitudeVisualizer : MonoBehaviour {
-  public MeshRenderer meshRenderer;
-
+public class AmplitudeAnalyzer : MonoBehaviour {
   public AudioSource[] sources;
 
   public float amplitudeFactor = 15.0f;
-  public float reactSpeed = 2.5f;
   
   private float multiplier = 0.0f;
-
-  private float initialAlpha = 0.0f;
 
   private float[] samples = null;
   private readonly int numSamples = 512;
 
   void Awake() {
-    initialAlpha = meshRenderer.material.color.a;
     samples = new float[numSamples];
 
     float divider = 0.0f;
@@ -28,14 +22,7 @@ public class AmplitudeVisualizer : MonoBehaviour {
     multiplier = divider > 0.0f ? amplitudeFactor / (numSamples * divider) : 0.0f;
   }
 
-  void Update () {
-    float targetAlpha = Mathf.Max(initialAlpha, multiplier * GetAmplitude());
-    Color c = meshRenderer.material.color;
-    c.a = Mathf.Lerp(c.a, targetAlpha, reactSpeed * Time.deltaTime);
-    meshRenderer.material.color = c;
-	}
-
-  private float GetAmplitude() {
+  public float GetAmplitude() {
     float amplitude = 0.0f;
     for (int i = 0; i < sources.Length; ++i) {
       if (sources[i].isPlaying) {
@@ -45,6 +32,6 @@ public class AmplitudeVisualizer : MonoBehaviour {
         }
       }
     }
-    return amplitude;
+    return amplitude * multiplier;
   }
 }

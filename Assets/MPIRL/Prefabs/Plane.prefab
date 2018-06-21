@@ -419,12 +419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fe40d0582bdc84b9746d6efa433ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 23351022546775404}
   sources:
   - {fileID: 82478761253887372}
   - {fileID: 82859691633279978}
-  amplitudeFactor: 24
-  reactSpeed: 4
+  amplitudeFactor: 30
 --- !u!114 &114979342399458412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,9 +437,11 @@ MonoBehaviour:
   boxCollider: {fileID: 65044201087412156}
   visualRenderer: {fileID: 23351022546775404}
   pulseVisualizer: {fileID: 114382584719817222}
+  amplitudeAnalyzer: {fileID: 114975002329232838}
   instrument: {fileID: 114126560838196202}
   generator: {fileID: 0}
-  colliderHeight: 0.04
+  amplitudeReactSpeed: 2.5
+  colliderHeight: 0.0325
   scaleSpeed: 6
   idleAlpha: 0.5
   hitCoolTime: 0.1
