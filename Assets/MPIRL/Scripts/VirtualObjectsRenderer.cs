@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VirtualObjectsRenderer : MonoBehaviour {
-  public Camera mainCamera;
   public Camera rendererCamera;
 
   public RenderTexture rendererTexture;
@@ -17,10 +16,6 @@ public class VirtualObjectsRenderer : MonoBehaviour {
     rendererTexture.width = width;
     rendererTexture.height = height;
     rendererCamera.targetTexture = rendererTexture;
-  }
-
-  void Update() {
-    rendererCamera.projectionMatrix = mainCamera.projectionMatrix;
   }
 
   void OnGUI() {

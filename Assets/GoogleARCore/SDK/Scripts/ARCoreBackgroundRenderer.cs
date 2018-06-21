@@ -32,6 +32,8 @@ namespace GoogleARCore
     [RequireComponent(typeof(Camera))]
     public class ARCoreBackgroundRenderer : MonoBehaviour
     {
+        public Camera virtualObjectsCamera;
+
         /// <summary>
         /// A material used to render the AR background image.
         /// </summary>
@@ -66,7 +68,14 @@ namespace GoogleARCore
             Disable();
         }
 
-        private void Update()
+    private void OnPreRender() {
+      // Make sure the projection matrix gets updated before post processing.
+      m_Camera.projectionMatrix = Frame.CameraImage.GetCameraProjectionMatrix(
+        m_Camera.nearClipPlane, m_Camera.farClipPlane);
+      virtualObjectsCamera.projectionMatrix = m_Camera.projectionMatrix;
+    }
+
+    private void Update()
         {
             if (BackgroundMaterial == null)
             {
@@ -90,9 +99,6 @@ namespace GoogleARCore
                 new Vector4(uvQuad.TopLeft.x, uvQuad.TopLeft.y, uvQuad.TopRight.x, uvQuad.TopRight.y));
             BackgroundMaterial.SetVector(bottomLeftRightVar,
                 new Vector4(uvQuad.BottomLeft.x, uvQuad.BottomLeft.y, uvQuad.BottomRight.x, uvQuad.BottomRight.y));
-
-            m_Camera.projectionMatrix = Frame.CameraImage.GetCameraProjectionMatrix(
-                m_Camera.nearClipPlane, m_Camera.farClipPlane);
         }
 
         private void Disable()

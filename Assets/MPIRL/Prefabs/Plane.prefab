@@ -443,5 +443,5 @@ MonoBehaviour:
   amplitudeReactSpeed: 2.5
   colliderHeight: 0.0325
   scaleSpeed: 6
-  idleAlpha: 0.5
+  idleAlpha: 0.42
   hitCoolTime: 0.1
