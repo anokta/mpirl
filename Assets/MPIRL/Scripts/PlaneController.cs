@@ -23,7 +23,6 @@ public class PlaneController : MonoBehaviour {
   public float hitCoolTime = 0.1f;
 
   private DetectedPlane detectedPlane;
-  private Anchor anchor;
 
   private BarelyAPI.MarkovChain hitNoteGenerator;
   private float lastHitTime = 0.0f;
@@ -41,7 +40,7 @@ public class PlaneController : MonoBehaviour {
     }
 
     if (detectedPlane.SubsumedBy != null) {
-      GameObject.Destroy(anchor.gameObject);
+      GameObject.Destroy(transform.parent.gameObject);
       return;
     }
     
@@ -66,12 +65,10 @@ public class PlaneController : MonoBehaviour {
 	}
 
   public void Initialize(DetectedPlane plane) {
-    mainColor = ColorGenerator.Generate(idleAlpha);
+    mainColor = ColorGenerator.Generate();
     visualRenderer.material.color = idleAlpha * mainColor;
 
     detectedPlane = plane;
-    anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
-    transform.parent = anchor.transform;
     transform.localPosition = -0.5f * colliderHeight * Vector3.up;
     transform.localRotation = Quaternion.identity;
   }

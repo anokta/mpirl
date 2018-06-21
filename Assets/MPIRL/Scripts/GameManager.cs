@@ -84,7 +84,9 @@ public class GameManager : MonoBehaviour {
   }
 
   private void InitializeNewPlane(DetectedPlane detectedPlane) {
-    var plane = GameObject.Instantiate(planePrefab, planeRoot.transform);
+    var anchor = detectedPlane.CreateAnchor(detectedPlane.CenterPose);
+    anchor.transform.SetParent(planeRoot.transform);
+    var plane = GameObject.Instantiate(planePrefab, anchor.transform);
     var planeController = plane.GetComponent<PlaneController>();
 
     planeController.Initialize(detectedPlane);
