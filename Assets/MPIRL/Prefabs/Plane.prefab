@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33390420672399280}
   - component: {fileID: 23351022546775404}
   - component: {fileID: 114382584719817222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114126560838196202}
   - component: {fileID: 114975002329232838}
   - component: {fileID: 82478761253887372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Instrument
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031606148298502}
   - component: {fileID: 82859691633279978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InteractableAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4229047480869114}
   - component: {fileID: 65044201087412156}
   - component: {fileID: 114979342399458412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Plane
   m_Icon: {fileID: 0}
