@@ -24,12 +24,13 @@ public class SimpleBassline : Generator {
   }
 
   protected override void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
-    if (beat == beatOffset) {
+    SectionType sectionType = SongStructure.GetSection(section);
+    if (beat == beatOffset || (sectionType == SectionType.CHORUS && beat == ((beatOffset + 2) % 4))) {
       lastNote += RandomNumber.NextInt(-Scale.scaleLength / 4, Scale.scaleLength / 2);
       lastNote = System.Math.Max(-Scale.scaleLength / 4, System.Math.Min(Scale.scaleLength, lastNote));
 
       Dictionary<int, int> sectionLines = null;
-      if (lines.TryGetValue(SongStructure.GetSection(section), out sectionLines)) {
+      if (lines.TryGetValue(sectionType, out sectionLines)) {
         int key = bar * numBeats + beat;
         int noteIndex = 0;
         if (!sectionLines.TryGetValue(key, out noteIndex)) {

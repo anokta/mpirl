@@ -14,8 +14,13 @@ public enum DrumType {
 public class Drums : Generator {
   public DrumType drumType;
 
+  private SectionType sectionType = SectionType.NONE;
+
   protected override void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
-    if (SongStructure.GetSection(section) == SectionType.OUTRO && drumType != DrumType.CLAP) {
+    if (bar == 0 && beat == 0) {
+      sectionType = SongStructure.GetSection(section);
+    }
+    if (sectionType == SectionType.OUTRO && drumType != DrumType.CLAP) {
       return;
     }
     int augmentedBeat = 2 * (bar * 4 + beat);
@@ -33,7 +38,7 @@ public class Drums : Generator {
           play = p < 0.0025f || augmentedBeat % 8 == 4;
           break;
         case DrumType.HH_CLOSED:
-          play = p < 0.001f || augmentedBeat % 4 == 2;
+          play = p < 0.001f || augmentedBeat % 4 == 2 || (sectionType == SectionType.CHORUS && augmentedBeat % 2 == 0 && p < 0.9f);
           break;
         case DrumType.HH_OPEN:
           play = augmentedBeat % 32 == 0;

@@ -15,8 +15,10 @@ public class BallController : MonoBehaviour {
 
   private bool destroying = false;
   private float destroySpeed = 16.0f;
-  
+
   void Start () {
+    ++GameManager.numBalls;
+  
     initTime = Time.time;
 	}
 	
@@ -29,6 +31,7 @@ public class BallController : MonoBehaviour {
       transform.localScale = 
         Vector3.Lerp(transform.localScale, Vector3.zero, destroySpeed * Time.deltaTime);
       if (transform.localScale.magnitude < 0.005f) {
+        --GameManager.numBalls;
         GameObject.Destroy(gameObject);
       }
       return;

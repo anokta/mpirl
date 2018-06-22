@@ -9,26 +9,26 @@ public class PerformerSelector : MonoBehaviour {
 
   public PerformerContainer melody;
 
-  // TODO: GameManager should handle this.
-  private int numDrums, numBass, numMelody;
+  public static int numPerformers = 0;
+  private int numDrums = 0, numBass = 0, numMelody = 0;
 
   private void Awake() {
-    numDrums = 0;
-    numBass = 0;
-    numMelody = 0;
-    
     drums.Initialize();
     bass.Initialize();
     melody.Initialize();
   }
 
   public PerformerType GetNextPerformerType() {
-    // TODO: Use numbers to calculate relative p.
-    float p = BarelyAPI.RandomNumber.NextFloat();
-    if (p < 0.35f) {
+    float drumP = 0.4f / (0.5f * numDrums + 1);
+    float bassP = 0.1f / (2.0f * numBass + 1);
+    float melodyP = 0.5f / (0.5f * numMelody + 1);
+    float p = BarelyAPI.RandomNumber.NextFloat(0.0f, bassP + drumP + melodyP);
+    
+    ++numPerformers;
+    if (p < drumP) {
       ++numDrums;
       return drums.GetPerformerType();
-    } else if (p < 0.6f) {
+    } else if (p < drumP + bassP) {
       ++numBass;
       return bass.GetPerformerType();
     } else {

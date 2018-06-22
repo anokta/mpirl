@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour {
   public Sequencer sequencer;
 
   public PerformerSelector performerSelector;
+  
+  // Very hacky, I know.. :/
+  public static int numBalls = 0;
+  //public static int numPlanes = 0;
 
   private List<DetectedPlane> newPlanes;
 

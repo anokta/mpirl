@@ -45,7 +45,7 @@ Properties{
 
         fixed4 frag (v2f i) : SV_Target
         {
-           fixed4 c = 2.0 * tex2D(_NoiseTex, i.uv_NoiseTex + _Time.x);
+           fixed4 c = 1.75f * tex2D(_NoiseTex, i.uv_NoiseTex + _Time.x);
            return c;
         }
         ENDCG

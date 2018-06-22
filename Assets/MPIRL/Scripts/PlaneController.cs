@@ -49,7 +49,6 @@ public class PlaneController : MonoBehaviour {
       visualRenderer.enabled = false;
       return;
     }
-
     boxCollider.enabled = true;
     visualRenderer.enabled = true;
 
