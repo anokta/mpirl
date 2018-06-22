@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drums:
-    numLastPerformers: 4
+    numLastPerformers: 3
     performers:
     - sample: {fileID: 8300000, guid: 797bfb1375213eb45babc44a69f242b1, type: 3}
       generatorName: Drums
@@ -214,12 +214,12 @@ MonoBehaviour:
       probability: 0.25
     - sample: {fileID: 8300000, guid: c4ebb9a36d3cc1846a6ef883974fe3d7, type: 3}
       generatorName: Drums
-      probability: 0.5
+      probability: 0.75
     - sample: {fileID: 8300000, guid: 2267a414ce35504439949fa25cd58eab, type: 3}
       generatorName: Drums
       probability: 0.1
   bass:
-    numLastPerformers: 2
+    numLastPerformers: 0
     performers:
     - sample: {fileID: 8300000, guid: 05d6881419fe5114084def7ec9b604a9, type: 3}
       generatorName: SimpleBassline
@@ -228,7 +228,7 @@ MonoBehaviour:
       generatorName: SimpleBassline
       probability: 0.05
   melody:
-    numLastPerformers: 1
+    numLastPerformers: 2
     performers:
     - sample: {fileID: 8300000, guid: c02df1de379e95f49bada6c06165ee73, type: 3}
       generatorName: OneBarNote
@@ -237,17 +237,14 @@ MonoBehaviour:
       generatorName: OneBarNote
       probability: 1
     - sample: {fileID: 8300000, guid: 54949ef02d80b464ba0a0073a5e405af, type: 3}
-      generatorName: StaticBarGenerator
-      probability: 0
+      generatorName: OneBarNote
+      probability: 0.05
     - sample: {fileID: 8300000, guid: 3f112f60997c8b242932ef7f7809bbd7, type: 3}
       generatorName: OneBarNote
-      probability: 0
-    - sample: {fileID: 8300000, guid: c85f8e5fba0b8514ab4e19da1366af21, type: 3}
-      generatorName: StaticBarGenerator
-      probability: 0.5
-    - sample: {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
-      generatorName: StaticBarGenerator
       probability: 0.05
+    - sample: {fileID: 8300000, guid: c85f8e5fba0b8514ab4e19da1366af21, type: 3}
+      generatorName: OneBarNote
+      probability: 0.5
 --- !u!1 &78641324
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &893994993
 Transform:
   m_ObjectHideFlags: 0
@@ -970,7 +967,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: a22ab8de7012de643a6a85e34334cc17, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.08
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1029,7 +1026,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.33333334
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -25,20 +25,27 @@ public class Drums : Generator {
     }
     int augmentedBeat = 2 * (bar * 4 + beat);
     for (int i = 0; i < 2; ++i) {
+      float volume = 1.0f;
       float p = RandomNumber.NextFloat(0.0f, 1.0f);
       bool play = false;
       switch (drumType) {
         case DrumType.KICK:
-          play = p < 0.0025f || (p < 0.96f && augmentedBeat % 8 == 0);
+          play = p < 0.0025f || (p < 0.97f && augmentedBeat % 8 == 0);
           break;
         case DrumType.SNARE:
           play = p < 0.0025f || augmentedBeat % 8 == 4;
+          if (augmentedBeat % 8 != 4) {
+            volume = RandomNumber.NextFloat(0.75f, 1.0f);
+          }
           break;
         case DrumType.CLAP:
           play = p < 0.0025f || augmentedBeat % 8 == 4;
           break;
         case DrumType.HH_CLOSED:
           play = p < 0.001f || augmentedBeat % 4 == 2 || (sectionType == SectionType.CHORUS && augmentedBeat % 2 == 0 && p < 0.9f);
+          if (augmentedBeat % 4 != 2) {
+            volume = RandomNumber.NextFloat(0.75f, 1.0f);
+          }
           break;
         case DrumType.HH_OPEN:
           play = augmentedBeat % 32 == 0;

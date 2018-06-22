@@ -20,7 +20,7 @@ public class PerformerSelector : MonoBehaviour {
 
   public PerformerType GetNextPerformerType() {
     float drumP = 0.4f / (0.5f * numDrums + 1);
-    float bassP = 0.1f / (2.0f * numBass + 1);
+    float bassP = 0.1f / (4.0f * numBass + 1);
     float melodyP = 0.5f / (0.5f * numMelody + 1);
     float p = BarelyAPI.RandomNumber.NextFloat(0.0f, bassP + drumP + melodyP);
     

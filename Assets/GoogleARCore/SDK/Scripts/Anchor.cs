@@ -122,12 +122,12 @@ namespace GoogleARCore
             TrackingState currentFrameTrackingState = TrackingState;
             if (m_LastFrameTrackingState != currentFrameTrackingState)
             {
-                bool isAnchorTracking = currentFrameTrackingState == TrackingState.Tracking;
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.SetActive(isAnchorTracking);
+                if (currentFrameTrackingState == TrackingState.Tracking) {
+                    foreach (Transform child in transform)
+                    {
+                        child.gameObject.SetActive(true);
+                    }
                 }
-
                 m_LastFrameTrackingState = currentFrameTrackingState;
             }
         }

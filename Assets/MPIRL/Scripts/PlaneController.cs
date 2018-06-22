@@ -44,16 +44,16 @@ public class PlaneController : MonoBehaviour {
       return;
     }
     
-    if (detectedPlane.TrackingState != TrackingState.Tracking) {
-      boxCollider.enabled = false;
-      visualRenderer.enabled = false;
+    bool tracking = detectedPlane.TrackingState == TrackingState.Tracking;
+    if (!tracking && transform.localScale.magnitude < 0.01f) {
+      gameObject.SetActive(false);
       return;
     }
-    boxCollider.enabled = true;
-    visualRenderer.enabled = true;
-
-    var targetScale = new Vector3(0.5f * detectedPlane.ExtentX, colliderHeight, 0.5f * detectedPlane.ExtentZ);
+    var targetScale = tracking ? 
+        new Vector3(0.5f * detectedPlane.ExtentX, colliderHeight, 0.5f * detectedPlane.ExtentZ) : 
+        Vector3.zero;
     transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
+    generator.enabled = tracking;
 
     float colorMultiplier = Mathf.Min(1.8f, Mathf.Max(idleAlpha, amplitudeAnalyzer.GetAmplitude()));
     visualRenderer.material.color = Color.Lerp(visualRenderer.material.color, colorMultiplier * mainColor, 

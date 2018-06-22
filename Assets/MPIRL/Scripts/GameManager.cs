@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour {
   private GameObject ballRoot;
   private GameObject planeRoot;
 
+  private BarelyAPI.MarkovChain noteOffsetGenerator;
+
+  private bool isStarted = false;
 
   void Awake() {
     newPlanes = new List<DetectedPlane>();
@@ -35,18 +38,19 @@ public class GameManager : MonoBehaviour {
     ballRoot = new GameObject("Balls");
     planeRoot = new GameObject("Planes");
 
+    noteOffsetGenerator = new BarelyAPI.MarkovChain(8, 1);
+
     Screen.sleepTimeout = SleepTimeout.NeverSleep;
   }
   
   void OnEnable() {
     SongStructure.Initialize();
     HarmonicProgression.Initialize(sequencer.numBars);
-
-    sequencer.Play(AudioSettings.dspTime + 2.5);  
   }
   
   void OnDisable() {
     sequencer.Stop();  
+    isStarted = false;
   }
 
   void Update() {
@@ -72,6 +76,11 @@ public class GameManager : MonoBehaviour {
 	}
 
   public void ThrowBall(Vector3 initalVelocity) {
+    if (!isStarted) {
+      isStarted = true;
+      sequencer.Play(AudioSettings.dspTime + 1.0f);
+      return;  
+    }
     var ball = GameObject.Instantiate(ballPrefab, ballRoot.transform);
     ball.transform.localPosition = mainCamera.transform.position + 0.1f * mainCamera.transform.forward;
     ball.GetComponent<Rigidbody>().AddForce(initalVelocity, ForceMode.VelocityChange);
@@ -106,7 +115,8 @@ public class GameManager : MonoBehaviour {
         generator.drumType = DrumType.HH_OPEN;
       }
     } else if (performerType.generatorName != "SimpleBassline") {
-      planeController.instrument.noteOffset = Random.Range(-8, 8);
+      planeController.instrument.noteOffset = noteOffsetGenerator.CurrentState;
+      noteOffsetGenerator.GenerateNextState();
     }
 
     if (performerType.generatorName == "OneBarNote") {
