@@ -23,6 +23,8 @@ public class PlaneController : MonoBehaviour {
   public float hitCoolTime = 0.1f;
 
   private DetectedPlane detectedPlane;
+  private Anchor anchor;
+
 
   private BarelyAPI.MarkovChain hitNoteGenerator;
   private float lastHitTime = 0.0f;
@@ -40,11 +42,11 @@ public class PlaneController : MonoBehaviour {
     }
 
     if (detectedPlane.SubsumedBy != null) {
-      GameObject.Destroy(transform.parent.gameObject);
+      GameObject.Destroy(anchor.transform.gameObject);
       return;
     }
     
-    bool tracking = detectedPlane.TrackingState == TrackingState.Tracking;
+    bool tracking = anchor.TrackingState == TrackingState.Tracking;
     if (!tracking && transform.localScale.magnitude < 0.01f) {
       gameObject.SetActive(false);
       return;
@@ -70,6 +72,8 @@ public class PlaneController : MonoBehaviour {
     detectedPlane = plane;
     transform.localPosition = -0.5f * colliderHeight * Vector3.up;
     transform.localRotation = Quaternion.identity;
+
+    anchor = transform.parent.GetComponent<Anchor>();
   }
 
   void OnCollisionEnter(Collision collision) {

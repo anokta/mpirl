@@ -14,3 +14,4 @@ public static class ColorGenerator {
     return Random.ColorHSV(minHue, maxHue, minSaturation, maxSaturation, minValue, maxValue);
   }
 }
+

@@ -238,13 +238,25 @@ MonoBehaviour:
       probability: 1
     - sample: {fileID: 8300000, guid: 54949ef02d80b464ba0a0073a5e405af, type: 3}
       generatorName: OneBarNote
-      probability: 0.05
+      probability: 0.025
     - sample: {fileID: 8300000, guid: 3f112f60997c8b242932ef7f7809bbd7, type: 3}
       generatorName: OneBarNote
       probability: 0.05
     - sample: {fileID: 8300000, guid: c85f8e5fba0b8514ab4e19da1366af21, type: 3}
       generatorName: OneBarNote
-      probability: 0.5
+      probability: 0.025
+    - sample: {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+      generatorName: OneBarNote
+      probability: 0.05
+    - sample: {fileID: 8300000, guid: 27be605e00678da489db7207ddc6a98c, type: 3}
+      generatorName: StaticBarGenerator
+      probability: 0.05
+    - sample: {fileID: 8300000, guid: 52d811919a012314889df987424d63c2, type: 3}
+      generatorName: StaticBarGenerator
+      probability: 0.05
+    - sample: {fileID: 8300000, guid: c02df1de379e95f49bada6c06165ee73, type: 3}
+      generatorName: StaticBarGenerator
+      probability: 0.05
 --- !u!1 &78641324
 GameObject:
   m_ObjectHideFlags: 0

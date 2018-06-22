@@ -6,7 +6,7 @@ public class StaticBarGenerator : Generator {
   protected override void OnNextBeat(int section, int bar, int beat, double dspTime, double beatTime) {
     if (beat == (instrument.noteOffset + 8) % 4) {
       double playDspTime = dspTime + System.Math.Abs(0.5 * beatTime * instrument.noteOffset);
-      instrument.PlayNote(playDspTime, HarmonicProgression.GetHarmonic(section, bar) + Random.Range(0, 5));
+      instrument.PlayNote(playDspTime, HarmonicProgression.GetHarmonic(section, bar));
     }
   }
 }

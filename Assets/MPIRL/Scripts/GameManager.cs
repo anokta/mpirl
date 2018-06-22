@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
   private BarelyAPI.MarkovChain noteOffsetGenerator;
 
-  private bool isStarted = false;
+  //private bool isStarted = false;
 
   void Awake() {
     newPlanes = new List<DetectedPlane>();
@@ -46,11 +46,13 @@ public class GameManager : MonoBehaviour {
   void OnEnable() {
     SongStructure.Initialize();
     HarmonicProgression.Initialize(sequencer.numBars);
+
+    sequencer.Play(AudioSettings.dspTime + 3.0f);
   }
   
   void OnDisable() {
     sequencer.Stop();  
-    isStarted = false;
+    //isStarted = false;
   }
 
   void Update() {
@@ -76,11 +78,11 @@ public class GameManager : MonoBehaviour {
 	}
 
   public void ThrowBall(Vector3 initalVelocity) {
-    if (!isStarted) {
-      isStarted = true;
-      sequencer.Play(AudioSettings.dspTime + 1.0f);
-      return;  
-    }
+    //if (!isStarted) {
+    //  isStarted = true;
+    //  sequencer.Play(AudioSettings.dspTime + 1.0f);
+    //  return;  
+    //}
     var ball = GameObject.Instantiate(ballPrefab, ballRoot.transform);
     ball.transform.localPosition = mainCamera.transform.position + 0.1f * mainCamera.transform.forward;
     ball.GetComponent<Rigidbody>().AddForce(initalVelocity, ForceMode.VelocityChange);
@@ -111,12 +113,12 @@ public class GameManager : MonoBehaviour {
         generator.drumType = DrumType.CLAP;
       } else if (performerType.sample.name.Contains("closed")) {
         generator.drumType = DrumType.HH_CLOSED;
-      } else if (performerType.sample.name.Contains("open")) {
+      } else if (performerType.sample.name.Contains("open")) { 
         generator.drumType = DrumType.HH_OPEN;
       }
     } else if (performerType.generatorName != "SimpleBassline") {
-      planeController.instrument.noteOffset = noteOffsetGenerator.CurrentState;
-      noteOffsetGenerator.GenerateNextState();
+      planeController.instrument.noteOffset = Random.Range(-8, 8); // noteOffsetGenerator.CurrentState;
+      //noteOffsetGenerator.GenerateNextState();
     }
 
     if (performerType.generatorName == "OneBarNote") {

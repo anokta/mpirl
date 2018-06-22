@@ -53,7 +53,7 @@ public class Drums : Generator {
       }
       if (play) {
         double playTime = dspTime + i * 0.5 * beatTime;
-        instrument.PlayNote(playTime, 0);
+        instrument.PlayNote(playTime, 0, volume);
       }
       ++augmentedBeat;
     }
