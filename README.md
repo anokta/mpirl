@@ -1,4 +1,4 @@
-# [mpirl](https://github.com/anokta/mpirl/releases/tag/untagged-ab79edfa9742b7861af4)
+# [mpirl](https://github.com/anokta/mpirl/releases/tag/v0.1)
 musical planes irl.
 
 a daydream hackathon prototype made in one week.
